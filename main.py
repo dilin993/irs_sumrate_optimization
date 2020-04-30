@@ -73,7 +73,7 @@ if __name__ == '__main__':
         plt.ylabel(result.ylabel)
         plt.title(result.title)
         plt.legend()
-        plt.show()
+        #plt.show()
         fig.savefig(result.title + str(gamma))
 
 
