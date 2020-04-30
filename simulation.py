@@ -111,7 +111,7 @@ class MUIRSSimuation(Simulation):
             print('Simulating SNR: ', SNR)
             H = np.zeros((self.num_users(), self.bs.antnum), dtype=complex)
             for k in range(self.num_users()):
-                H[:, k] = self.bs_user_links[k].get_channel_matrix().conj()
+                H[:, k] = self.bs_user_links[k].get_channel_matrix()
             Wopt = self.get_mmse(H, SNR)
             p_0[idx] = util.lin2dbm(np.sum(np.power(np.abs(Wopt), 2)))
             r_0[idx] = self.get_sum_rate(Wopt)
@@ -142,8 +142,8 @@ class MUIRSSimuation(Simulation):
         b = {}
         while iter < self.maxiter:
             for k in range(self.num_users()):
-                H[:, k] = np.matmul(vopt.conj().T, phi[k]) + \
-                          self.bs_user_links[k].get_channel_matrix().conj()
+                H[:, k] = np.matmul(vopt.T, phi[k].conj()) + \
+                          self.bs_user_links[k].get_channel_matrix()
             Wopt = self.get_mmse(H, SNR)
             for k in range(self.num_users()):
                 for j in range(self.num_users()):

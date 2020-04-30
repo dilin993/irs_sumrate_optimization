@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 from multiprocessing import Pool
 simulation_count = 100
 r1 = 20
+gamma = 1
+SNR_db = np.arange(-4, 21, 4)
 
 
 def create_simulations():
@@ -18,11 +20,11 @@ def create_simulations():
             10,  # IRS elements
             (0, 21, 0),  # IRS position
             -40,  # No dB
-            np.arange(-4, 21, 4),  # SNR dB
+            SNR_db,  # SNR dB
             -20,  # c0 dB
             2.7,  # alpha bs-irs
             math.inf,  # beta bs-irs
-            1)  # gamma
+            gamma)  # gamma
 
         for u in range(4):  # add 4 users
             theta = np.pi / 4 + (u - 1) * np.pi / 2
@@ -72,7 +74,7 @@ if __name__ == '__main__':
         plt.title(result.title)
         plt.legend()
         plt.show()
-        fig.savefig(result.title)
+        fig.savefig(result.title + str(gamma))
 
 
 
