@@ -4,11 +4,16 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 from multiprocessing import Pool
+
+
 simulation_count = 100
 r1 = 20
 gamma = 1
 SNR_db = np.arange(-4, 21, 4)
-N=20
+N=100
+tol = 1e-2
+max_iter = 500
+
 
 def create_simulations():
     simulations = []
@@ -24,7 +29,9 @@ def create_simulations():
             -20,  # c0 dB
             2.7,  # alpha bs-irs
             math.inf,  # beta bs-irs
-            gamma)  # gamma
+            gamma,  # gamma
+	    tol,  # tolerance
+            max_iter)  # maximum number of iterations 
 
         for u in range(4):  # add 4 users
             theta = np.pi / 4 + (u - 1) * np.pi / 2
@@ -74,7 +81,7 @@ if __name__ == '__main__':
         plt.title(result.title)
         plt.legend()
         #plt.show()
-        fig.savefig(result.title + '_' + str(gamma) + '_' + str(N))
+        fig.savefig(result.title + '_' + str(gamma) + '_' + str(N) + '_itreq_' + str(max_iter))
 
 
 
