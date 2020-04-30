@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from multiprocessing import Pool
 simulation_count = 100
 r1 = 20
-gamma = 1
+gamma = 2
 SNR_db = np.arange(-4, 21, 4)
 
 
