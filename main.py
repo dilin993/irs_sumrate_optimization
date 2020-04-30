@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 from multiprocessing import Pool
 simulation_count = 100
 r1 = 20
-gamma = 2
+gamma = 1
 SNR_db = np.arange(-4, 21, 4)
-
+N=20
 
 def create_simulations():
     simulations = []
@@ -17,7 +17,7 @@ def create_simulations():
             1e9,  # fc Hz
             4,  # BS antennas
             (0, 0, 0),  # BS position
-            10,  # IRS elements
+            N,  # IRS elements
             (0, 21, 0),  # IRS position
             -40,  # No dB
             SNR_db,  # SNR dB
@@ -74,7 +74,7 @@ if __name__ == '__main__':
         plt.title(result.title)
         plt.legend()
         #plt.show()
-        fig.savefig(result.title + str(gamma))
+        fig.savefig(result.title + '_' + str(gamma) + '_' + str(N))
 
 
 
