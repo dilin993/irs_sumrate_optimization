@@ -5,12 +5,11 @@ import math
 import matplotlib.pyplot as plt
 from multiprocessing import Pool
 
-
 simulation_count = 100
 r1 = 20
 gamma = 1
 SNR_db = np.arange(-4, 21, 4)
-N=100
+N = 100
 tol = 1e-2
 max_iter = 500
 
@@ -30,7 +29,7 @@ def create_simulations():
             2.7,  # alpha bs-irs
             math.inf,  # beta bs-irs
             gamma,  # gamma
-	    tol,  # tolerance
+            tol,  # tolerance
             max_iter)  # maximum number of iterations 
 
         for u in range(4):  # add 4 users
@@ -80,8 +79,5 @@ if __name__ == '__main__':
         plt.ylabel(result.ylabel)
         plt.title(result.title)
         plt.legend()
-        #plt.show()
+        # plt.show()
         fig.savefig(result.title + '_' + str(gamma) + '_' + str(N) + '_itreq_' + str(max_iter))
-
-
-
