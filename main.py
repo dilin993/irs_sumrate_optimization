@@ -4,14 +4,15 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 from multiprocessing import Pool
+import argparse
 
 simulation_count = 100
 r1 = 20
 gamma = 1
 SNR_db = np.arange(-4, 21, 4)
-N = 100
+N = 10
 tol = 1e-2
-max_iter = 500
+max_iter = 100
 
 
 def create_simulations():
@@ -23,7 +24,7 @@ def create_simulations():
             (0, 0, 0),  # BS position
             N,  # IRS elements
             (0, 21, 0),  # IRS position
-            -40,  # No dB
+            -40,  # sigma^2 dB
             SNR_db,  # SNR dB
             -20,  # c0 dB
             2.7,  # alpha bs-irs
@@ -50,7 +51,16 @@ def run_simulation(simulation):
     return simulation.simulate()
 
 
+def create_argument_parser():
+    par = argparse.ArgumentParser(description='MU IRS Simulation')
+    par.add_argument('gamma', type=float, help='value of gamma for the simulation', default=1.0)
+    return par
+
+
 if __name__ == '__main__':
+    parser = create_argument_parser()
+    args = parser.parse_args()
+    gamma = args.gamma
     results = []
     create_simulations()
     with Pool() as p:

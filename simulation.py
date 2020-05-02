@@ -147,9 +147,9 @@ class MUIRSSimuation(Simulation):
             Wopt = self.get_mmse(H, SNR)
             for k in range(self.num_users()):
                 for j in range(self.num_users()):
-                    b[(k, j)] = np.matmul(self.bs_user_links[k].get_channel_matrix().conj(),
+                    b[(j, k)] = np.matmul(self.bs_user_links[k].get_channel_matrix().conj(),
                                           Wopt[:, j])
-                    a[(k, j)] = np.matmul(phi[k], Wopt[:, j])
+                    a[(j, k)] = np.matmul(phi[k], Wopt[:, j])
             vopt_real = complex_to_real(vopt)
             res = optimize.minimize(get_cost_real,
                                     vopt_real,
