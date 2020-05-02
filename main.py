@@ -90,4 +90,4 @@ if __name__ == '__main__':
         plt.title(result.title)
         plt.legend()
         # plt.show()
-        fig.savefig(result.title + '_' + str(gamma) + '_' + str(N) + '_itreq_' + str(max_iter))
+        fig.savefig(result.title + '_' + str(gamma) + '_' + str(N) + '_itreq_' + str(max_iter) + '.png')
