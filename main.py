@@ -24,7 +24,7 @@ def create_simulations():
             (0, 0, 0),  # BS position
             N,  # IRS elements
             (0, 21, 0),  # IRS position
-            -40,  # sigma^2 dB
+            -80,  # sigma^2 dB
             SNR_db,  # SNR dB
             -20,  # c0 dB
             2.7,  # alpha bs-irs
